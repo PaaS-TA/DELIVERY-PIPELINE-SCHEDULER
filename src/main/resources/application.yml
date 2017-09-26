@@ -1,0 +1,142 @@
+spring:
+  application:
+    name: paasta-delivery-pipeline-scheduler
+
+org:
+  quartz:
+    scheduler:
+      instanceName: paastaDeliveryPipelineScheduler
+      instanceId: AUTO
+    threadPool:
+      threadCount: 5
+job:
+  startDelay: 0
+# 1 Minutes
+#  repeatInterval: 60000
+# 10 Minutes
+#  repeatInterval: 600000
+# 5 Seconds
+#  repeatInterval: 5000
+# 5 Minutes
+  repeatInterval: 5000
+#  repeatInterval: 300000
+  description: PaaS-TA Delivery Pipeline Scheduler
+  key: StatisticsJob
+
+
+---
+spring:
+  profiles:
+    active: local
+  datasource:
+    url: jdbc:mysql://SPRING-DATASOURCE-URL
+    username: SPRING-DATASOURCE-USER-NAME
+    password: SPRING-DATASOURCE-PASSWORD
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        strategy: org.hibernate.cfg.EJB3NamingStrategy
+    generate-ddl: false
+
+server:
+  port: {SERVER-PORT}
+
+logging:
+  level:
+    ROOT: INFO
+  path: classpath:logback-spring.xml
+  file: logs/application.log
+
+commonApi:
+  url: COMMOM-API-URL
+  authorization:
+    id: COMMOM-API-AUTHORIZATION-ID
+    password: COMMOM-API-AUTHORIZATION-PASSWORD
+
+deliveryPipelineApi:
+  url: DELIVERY-PIPELINE-API-URL
+  authorization:
+    id: DELIVERY-PIPELINE-API-AUTHORIZATION-ID
+    password: DELIVERY-PIPELINE-API-AUTHORIZATION-PASSWORD
+
+cf:
+  uaa:
+    oauth:
+      info:
+        uri: CF-UAA-OAUTH-INFO-URI
+      token:
+        check:
+          uri: CF-UAA-OAUTH-TOKEN-CHECK-URI
+        access:
+          uri: CF-UAA-OAUTH-TOKEN-ACCESS-URI
+      logout:
+        url: CF-UAA-OAUTH-LOGOUT-URI
+      authorization:
+        uri: CF-UAA-OAUTH-AUTHORIZATION-URI
+      client:
+        id: CF-UAA-OAUTH-CLIENT-ID
+        secret: CF-UAA-OAUTH-CLIENT-SECRET
+  api:
+    url: CF-API-URL
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://SPRING-DATASOURCE-URL
+    username: SPRING-DATASOURCE-USER-NAME
+    password: SPRING-DATASOURCE-PASSWORD
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        strategy: org.hibernate.cfg.EJB3NamingStrategy
+    generate-ddl: false
+
+server:
+  port: {SERVER-PORT}
+
+logging:
+  level:
+    ROOT: DEBUG
+  path: classpath:logback-spring.xml
+  file: logs/application.log
+
+commonApi:
+  url: COMMOM-API-URL
+  authorization:
+    id: COMMOM-API-AUTHORIZATION-ID
+    password: COMMOM-API-AUTHORIZATION-PASSWORD
+
+deliveryPipelineApi:
+  url: DELIVERY-PIPELINE-API-URL
+  authorization:
+    id: DELIVERY-PIPELINE-API-AUTHORIZATION-ID
+    password: DELIVERY-PIPELINE-API-AUTHORIZATION-PASSWORD
+
+cf:
+  uaa:
+    oauth:
+      info:
+        uri: CF-UAA-OAUTH-INFO-URI
+      token:
+        check:
+          uri: CF-UAA-OAUTH-TOKEN-CHECK-URI
+        access:
+          uri: CF-UAA-OAUTH-TOKEN-ACCESS-URI
+      logout:
+        url: CF-UAA-OAUTH-LOGOUT-URI
+      authorization:
+        uri: CF-UAA-OAUTH-AUTHORIZATION-URI
+      client:
+        id: CF-UAA-OAUTH-CLIENT-ID
+        secret: CF-UAA-OAUTH-CLIENT-SECRET
+  api:
+    url: CF-API-URL
