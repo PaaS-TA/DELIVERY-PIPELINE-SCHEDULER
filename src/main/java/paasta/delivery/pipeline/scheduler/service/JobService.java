@@ -39,9 +39,9 @@ public class JobService {
 
 
     /**
-     * Check modified push.
+     * Trigger job modified sources pushed.
      */
-    void checkModifiedPush() {
+    void triggerJobModifiedSourcesPushed() {
         LOGGER.info("########## CHECK MODIFIED PUSH :: {} {}", LocalDate.now(), LocalTime.now());
 
         String requestJobId;
@@ -74,21 +74,21 @@ public class JobService {
     }
 
 
-    // Get Build Job List From DB
+    // GET BUILD JOB LIST FROM DATABASE
     private List procGetBuildJobListFromDB() {
         String reqUrl = "/pipelines/-1/jobs/job-types/BUILD";
         return restTemplateService.send(Constants.TARGET_COMMON_API, reqUrl, HttpMethod.GET, null, List.class);
     }
 
 
-    // Get Repository Info From Ci Server
+    // GET REPOSITORY INFO FROM CI SERVER
     private CustomJob procGetRepositoryInfoFromCiServer(String requestJobId) {
         String reqUrl = "/jobs/" + requestJobId + "/repositories";
         return restTemplateService.send(Constants.TARGET_DELIVERY_PIPELINE_API, reqUrl, HttpMethod.GET, null, CustomJob.class);
     }
 
 
-    // Trigger Build Job To Ci Server
+    // TRIGGER BUILD JOB TO CI SERVER
     private void procSetTriggerBuildJobToCiServer(String requestJobId) {
         LOGGER.info("################################################################################");
         LOGGER.info("## TRIGGER BUILD JOB :: ID :: {} :: {} {}", requestJobId, LocalDate.now(), LocalTime.now());

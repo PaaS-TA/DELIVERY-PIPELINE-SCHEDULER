@@ -10,6 +10,7 @@ package paasta.delivery.pipeline.scheduler.common;
  */
 public class Constants {
 
+    public static final String RESULT_STATUS_SUCCESS = "SUCCESS";
     public static final String RESULT_STATUS_JOB_WORKING = "JOB_WORKING";
     public static final String RESULT_STATUS_BUILT_FILE_UPLOADING = "BUILT_FILE_UPLOADING";
 

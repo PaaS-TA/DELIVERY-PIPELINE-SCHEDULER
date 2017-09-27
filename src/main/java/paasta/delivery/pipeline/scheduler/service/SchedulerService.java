@@ -25,12 +25,13 @@ public class SchedulerService {
     @Autowired
     public SchedulerService(JobService jobService) {this.jobService = jobService;}
 
+
     /**
-     * Gets job status.
+     * Check job status.
      */
-    public void getJobStatus() {
-        // CALL CHECKING MODIFIED PUSH OF JOB SERVICE
-        jobService.checkModifiedPush();
+    public void checkJobStatus() {
+        // TRIGGER JOB MODIFIED SOURCES PUSHED
+        jobService.triggerJobModifiedSourcesPushed();
     }
 
 }

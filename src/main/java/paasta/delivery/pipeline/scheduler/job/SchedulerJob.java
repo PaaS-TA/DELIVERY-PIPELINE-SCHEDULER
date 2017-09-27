@@ -19,9 +19,11 @@ public class SchedulerJob implements Job {
     @Autowired
     private SchedulerService schedulerService;
 
+
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        schedulerService.getJobStatus();
+        // CHECK JOB STATUS
+        schedulerService.checkJobStatus();
     }
 
 }

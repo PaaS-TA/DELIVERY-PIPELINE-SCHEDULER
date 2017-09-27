@@ -23,7 +23,6 @@ job:
   description: PaaS-TA Delivery Pipeline Scheduler
   key: StatisticsJob
 
-
 ---
 spring:
   profiles:
