@@ -13,7 +13,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'war'
+//apply plugin: 'war'
 
 ext {
     springBootVersion = '1.5.3.RELEASE'
@@ -23,11 +23,10 @@ ext {
 	mysqlConnectorJavaVersion = '6.0.6'
 }
 
-version = '0.1'
 
-war {
-    baseName = 'paasta-delivery-pipeline-scheduler'
-    version "$version"
+
+jar {
+    baseName = 'delivery-pipeline-scheduler'
 }
 
 sourceCompatibility = 1.8
