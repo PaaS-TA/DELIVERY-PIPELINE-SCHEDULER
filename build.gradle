@@ -44,7 +44,8 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}")
 	compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
 
-	runtime("mysql:mysql-connector-java:${mysqlConnectorJavaVersion}")
+	//runtime("mysql:mysql-connector-java:${mysqlConnectorJavaVersion}")
+	runtime("org.mariadb.jdbc:mariadb-java-client:2.2.6")
 	testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 }
 
@@ -59,4 +60,7 @@ test {
     jacoco {
         destinationFile = file("$buildDir/jacoco/jacoco-overall.exec")
     }
+}
+springBoot {
+    mainClass = "paasta.delivery.pipeline.scheduler.Application"
 }
